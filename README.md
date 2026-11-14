@@ -23,4 +23,4 @@ Both files were supplied by Bright Data through The Bright Initiative. They are 
 
 ## Status
 
-The notebook currently holds the project outline, an executed input and data-quality check, and the audited nine-county healthcare review cohort. The representation comparison and the model are not built yet, so there are no model results.
+The notebook currently holds an executed input and data-quality check, the audited nine-county healthcare review cohort, and the comparison of low-star shares in sampled review texts versus all ratings. The text model is not built yet, so there are no model results.
