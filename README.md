@@ -1,39 +1,26 @@
 # Beyond Access
-Sentiment classification and subgroup error analysis for Bay Area essential-service reviews.
 
-**Status: planning scaffold. Modeling cells and findings are pending implementation.**
+**Which Complaints Get Missed? A Sentiment Audit of Bay Area Healthcare Reviews**
 
-## Files
-- `analysis.ipynb`: the complete project outline and implementation cells, from raw inputs through evaluation and interpretation.
-- `presentation.pptx`: editable seven-slide presentation framework. Results slides are explicitly pending.
-- `requirements.txt`: minimal packages. Pin versions after a successful end-to-end run.
-- `.gitignore`: excludes raw data and local environment files.
+Project for the Advanced Track of the 8th Annual Datathon for Social Good.
 
 ## Research question
-Can review text identify low-star reviews of essential services, and does model performance vary across service types and locations? The practical output is a feedback audit for human review. Existing stars already identify low ratings; the classifier is a benchmark for text interpretation, not proof of a new operational capability.
 
-## Data and method
-Use organizer-supplied Google Maps Places and Reviews. Join on place_id, audit matches and keep supported essential-service categories. Predict 1–2 stars versus 3–5 stars with TF-IDF + Logistic Regression, compared with a majority-class baseline. Keep places disjoint across training, validation and test sets. Audit at least three sufficiently populated subgroup levels.
+Among Google Maps reviews of healthcare services in the nine Bay Area counties, which feedback reaches the review sample we can read, and which low-star reviews does a general-purpose text classifier miss? Low-star means 1–2 stars. Star ratings are a proxy for expressed dissatisfaction, not a measure of clinical quality.
 
-## Run after implementation
-1. Install Python 3 and `pip install -r requirements.txt`.
-2. Place `google_maps.csv` and `google_maps_reviews.csv` in a local `data/` folder.
-3. Open `analysis.ipynb` in Jupyter or Colab. Implement the marked cells, then restart and run all.
-4. Update slides using actual notebook outputs. Record tested versions and input checksums.
+## Data
 
-The current notebook is an outline, not an executable completed analysis. No metrics or findings have been generated.
+Both files were supplied by Bright Data through The Bright Initiative. They are not included in this repository.
 
-## Interpretation and privacy
-Ratings are subjective labels. Reviews are self-selected and cannot establish service quality or population-level inequity. Report aggregate patterns, remove identity fields, and paraphrase sensitive examples. Confirm redistribution permission before publishing raw records.
+- `google_maps_reviews.csv`: reviews of many business types. Training source for the classifier.
+- `google_maps.csv`: place listings with coordinates, categories, a sample of reviews and full rating distributions. Source for the healthcare cohort and the evaluation set.
 
-## Submission
-Project URL: pending
+## Run
 
-Presentation: `presentation.pptx`
+1. `pip install -r requirements.txt`
+2. Put the two CSV files in a `data/` folder at the repository root.
+3. Open `analysis.ipynb` in Jupyter and run all cells. The first run downloads county boundaries from U.S. Census TIGERweb into `data/`.
 
-Video URL (maximum 5 minutes): pending
+## Status
 
-One teammate submits the project URL, slideshow and video through the organizer's form:
-https://docs.google.com/forms/d/e/1FAIpQLSfWHAXrGLYZztTQ5lHI_GlY72-hW9zT1yps0FI2gxVkdRs7ag/viewform
-
-Sources: organizer-provided Tracks & Guide and the Places/Reviews dataset READMEs. Data supplied by Bright Data through The Bright Initiative.
+The notebook currently holds the project outline, an executed input and data-quality check, and the audited nine-county healthcare review cohort. The representation comparison and the model are not built yet, so there are no model results.
