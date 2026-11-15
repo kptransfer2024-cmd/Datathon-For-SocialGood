@@ -4,7 +4,7 @@
 
 One reviewer (paraphrased) called the doctor great, found the front desk unhelpful, and left one star. Our classifier read the text and filed it as fine. This project asks how often that happens, and where.
 
-**Start with [the notebook](analysis.ipynb)** · [View slides](https://docs.google.com/presentation/d/1AZ6jwSll1UV7ZIjFEZeli3BjL_2Ik4XE/edit?usp=sharing&ouid=112179014821390383566&rtpof=true&sd=true) · [Download PowerPoint](presentation.pptx)
+**Start with [the notebook](analysis.ipynb)** · [View slides](https://docs.google.com/presentation/d/1AZ6jwSll1UV7ZIjFEZeli3BjL_2Ik4XE/edit) · [Download PowerPoint](presentation.pptx) · [Video Walkthrough](https://drive.google.com/file/d/1kM62s8GBE6vYaenJ1Qi0zr96S19Ei-Ja/view)
 
 ## What we studied
 
