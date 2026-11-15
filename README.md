@@ -14,7 +14,7 @@ One reviewer (paraphrased) called the doctor great, found the front desk unhelpf
 
 - **Sampling.** We compared the share of 1–2-star ratings in the available review texts with the share among all ratings at the same listings, including ratings without text. Each listing carried the same weight in both comparisons.
 
-- **TF-IDF** turns each review into a vector of words and two-word phrases, so “helpful” and “not helpful” are separate features. A term’s weight is $\mathrm{count}(t,d)\,[1+\ln((N+1)/(df_t+1))]$, where $N$ is the number of training reviews and $df_t$ is the number containing term $t$. This gives less weight to terms that appear almost everywhere. Each review vector is then scaled to unit length.
+- **TF-IDF** (Term Frequency–Inverse Document Frequency) turns each review into a vector of words and two-word phrases, so “helpful” and “not helpful” are separate features. A term’s weight is $\mathrm{count}(t,d)\,[1+\ln((N+1)/(df_t+1))]$, where $N$ is the number of training reviews and $df_t$ is the number containing term $t$. This gives less weight to terms that appear almost everywhere. Each review vector is then scaled to unit length.
 
 - **Logistic regression** learns which features point toward a 1–2-star rating. Given a review vector $x$, it estimates $P(\text{low-star}\mid x)=1/(1+e^{-(w^\top x+b)})$, where $w$ contains the learned feature weights and $b$ is the intercept. We trained on general Google Maps reviews and tested on Bay Area healthcare reviews, with no shared listings or identical texts between the two sets.
 
