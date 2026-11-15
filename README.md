@@ -1,41 +1,36 @@
 # Beyond Access
 
-**Which Complaints Get Missed? A Sentiment Audit of Bay Area Healthcare Reviews**
+**Which complaints get missed?** A sentiment audit of Bay Area healthcare reviews for the 8th Annual Datathon for Social Good, Advanced Track.
 
-Project for the Advanced Track of the 8th Annual Datathon for Social Good.
+One reviewer (paraphrased) called the doctor great, found the front desk unhelpful, and left one star. Our classifier read the text and filed it as fine. This project asks how often that happens, and where.
 
-## Research question
+**Start with [the notebook](analysis.ipynb).** Slides: `presentation.pptx`.
 
-Among Google Maps reviews of healthcare services in the nine Bay Area counties, which feedback reaches the review sample we can read, and which low-star reviews does a general-purpose text classifier miss? Low-star means 1–2 stars. Star ratings are a proxy for expressed dissatisfaction, not a measure of clinical quality.
+## What we studied
 
-## Data
-
-Both files were supplied by Bright Data through The Bright Initiative. They are not included in this repository.
-
-- `google_maps_reviews.csv`: reviews of many business types. Training, validation and internal test data for the classifier.
-- `google_maps.csv`: place listings with coordinates, categories, a sample of reviews and full rating distributions. Source for the healthcare cohort, which is the external test set.
+68,007 written reviews from 18,416 Google place listings in nine Bay Area counties and seven healthcare service groups. Low-star means 1–2 stars.
 
 ## Findings
 
-The healthcare cohort has 68,007 written reviews from 18,416 Google place listings in seven service groups.
+- **Sampling gap.** At pharmacies, 39.9% of the review texts we could read were low-star, against 30.3% of all ratings at the same listings.
+- **Model.** TF-IDF + logistic regression, trained on general reviews. Its healthcare flags were right 94.7% of the time (precision), and it caught 81.9% of low-star reviews (recall). Macro-F1: 0.927, against 0.449 for a majority baseline.
+- **Misses.** Mental health had the highest observed miss rate (385 of 1,743 low-star reviews). Outpatient and primary care had the most misses (898 of 4,716).
+- **Errors we read.** In 20 hand-read errors, some missed reviews mixed a complaint with praise for someone else.
 
-- **Sample representation.** At the same listings and weights, 18.6% of sampled review texts were low-star against 15.6% of all ratings. The gap was largest for pharmacies (9.6 percentage points).
-- **Classifier.** TF-IDF with logistic regression, trained only on general reviews, reached low-star precision 0.947 and recall 0.819 on the healthcare cohort (macro-F1 0.927). A majority baseline finds no low-star review (macro-F1 0.449).
-- **Misses.** The model missed 2,278 of 12,617 low-star reviews. The miss rate ran from 14.1 per 100 in vision care to 22.1 per 100 in mental health, and outpatient and primary care had the most missed reviews (898).
-- **Error reading.** In 20 hand-read errors, some missed reviews described a problem in neutral language and some mixed a complaint with praise for someone else.
+Star ratings report experience. They do not measure clinical quality.
 
-These results describe the observed reviews. They do not measure clinical quality or demographic disparities.
-
-## Run
+## Run it
 
 1. `pip install -r requirements.txt`
-2. Put the two organizer CSV files in a `data/` folder at the repository root, named `google_maps_reviews.csv` and `google_maps.csv`.
-3. Open `analysis.ipynb` in Jupyter and run all cells. It takes a few minutes.
+2. Put `google_maps_reviews.csv` and `google_maps.csv` in a `data/` folder at the repository root.
+3. Open `analysis.ipynb` in Jupyter and run all cells.
 
-County boundaries are read from `data/tigerweb_bay_area_counties.geojson`. If that file is missing, the notebook downloads it from U.S. Census TIGERweb and compares the geometry with a pinned hash. An independent run from an empty cache confirmed the download and the matching hash.
+County boundaries download from U.S. Census TIGERweb if missing and are checked against a pinned hash.
 
 ## Tested environment
 
-The saved outputs come from Python 3.10.12 on Linux (aarch64) with the versions pinned in `requirements.txt`: NumPy 2.2.6, SciPy 1.15.3, pandas 2.3.3, matplotlib 3.10.9 and scikit-learn 1.7.2. Fresh runs in that environment repeat them exactly.
+Release run: Python 3.10.12 on Linux with the versions pinned in `requirements.txt`. A local rerun on macOS with Python 3.12.3 matched. One independent run elsewhere reported 2,136 missed reviews and 605 false positives, against 2,278 and 583 here.
 
-An independent run on a different setup with scikit-learn 1.8.0 matched the cohort and the selected settings but reported 2,136 missed reviews and 605 false positives, against 2,278 and 583 here. Expect differences of that size in the Section 5 and 6 error counts on other setups.
+## Data
+
+Google Maps Places and Reviews were supplied by Bright Data through The Bright Initiative. They are not included here.
